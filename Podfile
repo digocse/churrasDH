@@ -6,6 +6,6 @@ target 'ChurrasDH' do
   use_frameworks!
 
   # Pods for ChurrasDH
-  
+  pod 'Firebase/Auth'
 
 end

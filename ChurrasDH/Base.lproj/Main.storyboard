@@ -105,7 +105,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Registrar"/>
                                 <connections>
-                                    <segue destination="viZ-EA-MSG" kind="show" id="p1t-cq-7wQ"/>
+                                    <action selector="registerPressed:" destination="ON5-Dj-pG7" eventType="touchUpInside" id="RWi-gt-dWJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -123,6 +123,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IsO-hj-oDZ"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="S7L-ib-wBZ" id="ToF-95-API"/>
+                        <outlet property="passwordTextField" destination="9H0-sW-MzY" id="af3-QU-EzH"/>
+                        <segue destination="viZ-EA-MSG" kind="show" identifier="RegisterToChat" id="fX4-Rw-qeb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXw-QX-OnW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,7 +229,6 @@
                                 <state key="normal" title="Entrar"/>
                                 <connections>
                                     <action selector="loginPressed:" destination="rEP-Nq-3lM" eventType="touchUpInside" id="mQK-B0-Aav"/>
-                                    <segue destination="viZ-EA-MSG" kind="show" id="wcx-Wx-rF8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -245,6 +249,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="gtM-UW-GNN" id="6b0-iR-6A2"/>
                         <outlet property="passwordTextField" destination="DzG-Sk-9El" id="MUx-Mg-Zjy"/>
+                        <segue destination="viZ-EA-MSG" kind="show" identifier="LoginToChat" id="7PQ-AK-XlM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ike-8u-38P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -272,7 +277,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wcx-Wx-rF8"/>
+        <segue reference="fX4-Rw-qeb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="fogo" width="197" height="256"/>
