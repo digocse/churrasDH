@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
@@ -15,6 +16,19 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerPressed(_ sender: UIButton) {
         print("Registro clicado")
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            Auth.auth().createUser(withEmail: email, password: password) {
+                authResult, error in
+                if let e = error {
+                    print(e)
+                } else {
+                    // Navegar pra tela do chat
+                    self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+                }
+            }
+        } else {
+            // Mensagem de erro: os campos não podem ser vazios
+        }
     }
     
     

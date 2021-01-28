@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		AB41248B25C218810058897F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB41248A25C218810058897F /* ChatViewController.swift */; };
 		AB41248E25C2189E0058897F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB41248D25C2189E0058897F /* WelcomeViewController.swift */; };
 		AB41249125C22AF00058897F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB41249025C22AF00058897F /* GoogleService-Info.plist */; };
+		AB4124A125C248320058897F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4124A025C248320058897F /* Message.swift */; };
+		AB4124A425C249170058897F /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB4124A325C249160058897F /* MessageCell.xib */; };
+		AB4124A725C249AB0058897F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4124A625C249AB0058897F /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		AB41248A25C218810058897F /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AB41248D25C2189E0058897F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AB41249025C22AF00058897F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB4124A025C248320058897F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AB4124A325C249160058897F /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		AB4124A625C249AB0058897F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		ACB998A47569DB91D0538FAA /* Pods_ChurrasDH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChurrasDH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -58,7 +64,6 @@
 				7D7D1C35AD10011E5E2153A7 /* Pods-ChurrasDH.debug.xcconfig */,
 				971B3F842F5451D08BE9788C /* Pods-ChurrasDH.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -109,6 +114,8 @@
 		AB41248025C218430058897F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AB4124A325C249160058897F /* MessageCell.xib */,
+				AB4124A625C249AB0058897F /* MessageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +123,7 @@
 		AB41248125C2184B0058897F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AB4124A025C248320058897F /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB4124A425C249170058897F /* MessageCell.xib in Resources */,
 				AB41247825C217FF0058897F /* LaunchScreen.storyboard in Resources */,
 				AB41249125C22AF00058897F /* GoogleService-Info.plist in Resources */,
 				AB41247525C217FF0058897F /* Assets.xcassets in Resources */,
@@ -251,8 +260,10 @@
 				AB41246E25C217FE0058897F /* SceneDelegate.swift in Sources */,
 				AB41248825C2186F0058897F /* LoginViewController.swift in Sources */,
 				AB41248B25C218810058897F /* ChatViewController.swift in Sources */,
+				AB4124A125C248320058897F /* Message.swift in Sources */,
 				AB41248425C218650058897F /* RegisterViewController.swift in Sources */,
 				AB41248E25C2189E0058897F /* WelcomeViewController.swift in Sources */,
+				AB4124A725C249AB0058897F /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

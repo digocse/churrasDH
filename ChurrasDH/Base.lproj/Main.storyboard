@@ -173,7 +173,7 @@
                                     <constraint firstAttribute="height" constant="130" id="zHy-KG-0iG"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZzO-e3-dm5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZzO-e3-dm5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="678"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -190,7 +190,14 @@
                             <constraint firstItem="52r-bo-ilN" firstAttribute="top" secondItem="ZzO-e3-dm5" secondAttribute="bottom" id="fU5-Hk-ZBg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Ycw-AA-UyC"/>
+                    <navigationItem key="navigationItem" id="Ycw-AA-UyC">
+                        <barButtonItem key="rightBarButtonItem" title="Sair" id="vSV-9q-VXx">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logoutUser:" destination="viZ-EA-MSG" id="bMp-Hd-Hrh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="messageTextField" destination="oSu-mD-AgC" id="nAE-uf-hcS"/>
                         <outlet property="tableView" destination="ZzO-e3-dm5" id="iHk-x9-fZX"/>
@@ -208,12 +215,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-UW-GNN">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="teste@123.com" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-UW-GNN">
                                 <rect key="frame" x="40" y="140" width="334" height="39.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DzG-Sk-9El">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Senha" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DzG-Sk-9El">
                                 <rect key="frame" x="40" y="219.5" width="334" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -277,7 +284,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fX4-Rw-qeb"/>
+        <segue reference="7PQ-AK-XlM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="fogo" width="197" height="256"/>
