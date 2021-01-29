@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -14,15 +15,18 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
     
     var messages: [Message] = [
-        Message(sender: "teste@123.com", messageLabel: "Ola"),
+        Message(sender: "teste@123.com", messageLabel: "Ola OlaOlaOlaOla  OlaOlaOla OlaOlaOlaOlaOla  OlaOlaOlaOlaOlaOla  OlaOlaOlaOlaOlaOlaOla"),
         Message(sender: "outro@123.com", messageLabel: "Oi")
     ]
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
     
@@ -37,6 +41,21 @@ class ChatViewController: UIViewController {
         
     }
     
+    @IBAction func sendPressed(_ sender: UIButton) {
+        if let messageText = messageTextField.text, let messageSender = Auth.auth().currentUser?.email {
+            
+            
+            db.collection("messages").addDocument(data: ["text": messageText, "sender": messageSender]) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("Mensagem armazenada com sucesso!")
+                }
+            }
+            
+            
+        }
+    }
     /*
     // MARK: - Navigation
 
