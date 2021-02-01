@@ -12,6 +12,11 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(UserDefaultsHelper.userIsLogged())
+        
+        if UserDefaultsHelper.userIsLogged() {
+            self.performSegue(withIdentifier: "WelcomeToChat", sender: nil)
+        }
         // Do any additional setup after loading the view.
     }
     

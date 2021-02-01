@@ -32,6 +32,7 @@ class ChatViewController: UIViewController {
         
         do {
             try Auth.auth().signOut()
+            UserDefaultsHelper.logoutUser()
             navigationController?.popToRootViewController(animated: true)
         } catch let signOutError as NSError {
             print("Error %@", signOutError)

@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController {
                     print(e)
                 } else {
                     // Navegar pra tela do chat
+                    UserDefaultsHelper.saveLoggedUser()
                     self.performSegue(withIdentifier: "RegisterToChat", sender: self)
                 }
             }

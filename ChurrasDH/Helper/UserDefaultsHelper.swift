@@ -13,4 +13,12 @@ class UserDefaultsHelper {
     static func userIsLogged() -> Bool {
         return defaults.bool(forKey: "isLogged")
     }
+    
+    static func saveLoggedUser() {
+        defaults.set(true, forKey: "isLogged")
+    }
+    
+    static func logoutUser() {
+        defaults.set(false, forKey: "isLogged")
+    }
 }
