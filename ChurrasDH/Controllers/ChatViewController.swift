@@ -41,7 +41,7 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
-        if let messageText = messageTextField.text, let emailAuthor = Auth.auth().currentUser?.email, let userUID = Auth.auth().currentUser?.uid {
+        if let messageText = messageTextField.text, let messageSender = Auth.auth().currentUser?.email, let userUID = Auth.auth().currentUser?.uid {
             
             db.collection("users").whereField("userUID", isEqualTo: userUID).getDocuments { (querySnapshot, error) in
                 if let e = error {
@@ -52,11 +52,9 @@ class ChatViewController: UIViewController {
                         
                         for doc in snapshotDocs {
                             print(doc.data())
-                            let data = doc.data()
+//                            let data = doc.data()
                             
-                            if let username = data["username"] as? String {
-                                self.persistData(messageText: messageText, messageSender: username, emailAuthor: emailAuthor)
-                            }
+                            self.persistData(messageText: messageText, messageSender: messageSender)
                         }
                     }
                 }
@@ -67,10 +65,9 @@ class ChatViewController: UIViewController {
     }
     
 //   Outra maneira de persistir a data "createdAt": FieldValue.serverTimestamp()
-    private func persistData(messageText: String, messageSender: String, emailAuthor: String) {
+    private func persistData(messageText: String, messageSender: String) {
         db.collection("messages").addDocument(data: ["text": messageText,
                                                      "sender": messageSender,
-                                                     "email": emailAuthor,
                                                      "createdAt": Date().timeIntervalSince1970]) { (error) in
             if let e = error {
                 print(e)
