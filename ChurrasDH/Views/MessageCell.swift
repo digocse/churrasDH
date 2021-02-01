@@ -12,12 +12,15 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     
+    @IBOutlet weak var friendUserImageView: UIImageView!
     @IBOutlet weak var messageBubble: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         messageBubble.layer.cornerRadius = 20
+        userImageView.layer.cornerRadius = 20
+        friendUserImageView.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
