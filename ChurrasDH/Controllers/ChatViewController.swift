@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import CoreData
 
 class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -43,25 +44,45 @@ class ChatViewController: UIViewController {
     @IBAction func sendPressed(_ sender: UIButton) {
         if let messageText = messageTextField.text, let messageSender = Auth.auth().currentUser?.email, let userUID = Auth.auth().currentUser?.uid {
             
-            db.collection("users").whereField("userUID", isEqualTo: userUID).getDocuments { (querySnapshot, error) in
-                if let e = error {
-                    print(e)
-                } else {
-                    if let snapshotDocs = querySnapshot?.documents {
-                        print("Quantidade de usuarios \(snapshotDocs.count)")
-                        
-                        for doc in snapshotDocs {
-                            print(doc.data())
-//                            let data = doc.data()
-                            
-                            self.persistData(messageText: messageText, messageSender: messageSender)
-                        }
-                    }
-                }
-            }
-    
+            print("USER UID: \(getCurrentUserUID())")
+            print("Email: \(messageSender)")
+            
+            self.persistData(messageText: messageText, messageSender: messageSender)
+            
+//            db.collection("users").whereField("userUID", isEqualTo: userUID).getDocuments { (querySnapshot, error) in
+//                if let e = error {
+//                    print(e)
+//                } else {
+//                    if let snapshotDocs = querySnapshot?.documents {
+//                        print("Quantidade de usuarios \(snapshotDocs.count)")
+//
+//                        for doc in snapshotDocs {
+//                            print(doc.data())
+////                            let data = doc.data()
+//
+//                            self.persistData(messageText: messageText, messageSender: messageSender)
+//                        }
+//                    }
+//                }
+//            }
             
         }
+    }
+    
+    private func getCurrentUserUID() -> String {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request: NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+        
+        var userUID = ""
+        do {
+            let users = try context.fetch(request)
+            userUID = users.first?.uid ?? ""
+        } catch {
+            print("Erro ao buscar o usuario \(error)")
+        }
+        
+        return userUID
     }
     
 //   Outra maneira de persistir a data "createdAt": FieldValue.serverTimestamp()
