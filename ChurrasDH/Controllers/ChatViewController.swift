@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 import CoreData
 
 class ChatViewController: UIViewController {
@@ -27,6 +28,21 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
         loadMessages()
+    }
+    
+    @IBAction func addPhoto(_ sender: UIBarButtonItem) {
+        self.getImage(fromSourceType: .photoLibrary)
+    }
+    
+    private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let imagePickerController = UIImagePickerController()
+            
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = sourceType
+            
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func logoutUser(_ sender: UIBarButtonItem) {
@@ -141,6 +157,47 @@ class ChatViewController: UIViewController {
     }
     */
 
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let localImage = info[.originalImage] as? UIImage else { return }
+        
+        guard let imageData: Data = localImage.jpegData(compressionQuality: 0.5) else { return }
+        
+        self.persistPhoto(imageData: imageData)
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    private func persistPhoto(imageData: Data) {
+        // Persistir a imagem no Firebase Storage
+        let storageRef = Storage.storage().reference()
+        
+        let storageMetaData = StorageMetadata()
+        storageMetaData.contentType = "image/png"
+        
+//        let ref = storageRef.child("imagemTeste")
+        let ref = storageRef.child("imagens/imagemTeste")
+        print(ref.root())
+        print(ref.parent())
+        
+        ref.putData(imageData, metadata: storageMetaData) { (url, error) in
+            if error == nil {
+                ref.downloadURL { (url, error) in
+                    print("URL da imagem \(String(describing: url))")
+                    // Salvar a imagem no CoreData
+                    
+                }
+            }
+        }
+    }
+    
+    private func persistCoreData(imageData: Data) {
+        
+    }
+    
 }
 
 extension ChatViewController: UITableViewDataSource {
