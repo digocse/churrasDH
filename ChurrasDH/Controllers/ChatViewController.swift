@@ -19,6 +19,8 @@ class ChatViewController: UIViewController {
     var messages: [Message] = []
     
     let db = Firestore.firestore()
+    var userImage: UIImage = UIImage(named: "fogo")!
+    var currentUser: CoreUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,17 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
         loadMessages()
+        loadCurrentUser()
+    }
+    
+    private func loadCurrentUser() {
+        self.currentUser = getCurrentUser()
+        
+        if let imageData = currentUser?.photoData {
+            if let image = UIImage(data: imageData) {
+                self.userImage = image
+            }
+        }
     }
     
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
@@ -188,14 +201,46 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 ref.downloadURL { (url, error) in
                     print("URL da imagem \(String(describing: url))")
                     // Salvar a imagem no CoreData
-                    
+                    self.persistCoreData(imageData: imageData)
                 }
             }
         }
     }
     
     private func persistCoreData(imageData: Data) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
+        // Atualizar a foto do usuario corrente
+        guard let currentUser = getCurrentUser() else { return }
+        
+        currentUser.setValue(imageData, forKey: "photoData")
+        
+        do {
+            try context.save()
+            
+            // Atualizar celulas da tableview com a nova foto
+            if let image = UIImage(data: imageData) {
+                self.userImage = image
+            }
+            self.tableView.reloadData()
+        } catch {
+            print("Erro ao atualizar a foto \(error)")
+        }
+        
+    }
+    
+    private func getCurrentUser() -> CoreUser? {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request: NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
+        
+        do {
+            let users = try context.fetch(request)
+            return users.first ?? nil
+        } catch {
+            print("Erro ao buscar usuario \(error)")
+        }
+        return nil
     }
     
 }
@@ -217,6 +262,7 @@ extension ChatViewController: UITableViewDataSource {
         if message.sender == Auth.auth().currentUser?.email {
             cell.friendUserImageView.isHidden = true
             cell.userImageView.isHidden = false
+            cell.userImageView.image = self.userImage
             cell.messageBubble.backgroundColor = UIColor(red: 192.0/255.0, green: 38.0/255.0, blue: 42.0/255.0, alpha: 1.0)
         } else {
             cell.friendUserImageView.isHidden = false
