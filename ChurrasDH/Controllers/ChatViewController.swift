@@ -34,7 +34,7 @@ class ChatViewController: UIViewController {
     }
     
     private func loadCurrentUser() {
-        self.currentUser = getCurrentUser()
+        self.currentUser = User.getCurrentUser()
         
         if let imageData = currentUser?.photoData {
             if let image = UIImage(data: imageData) {
@@ -211,7 +211,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         // Atualizar a foto do usuario corrente
-        guard let currentUser = getCurrentUser() else { return }
+        guard let currentUser = User.getCurrentUser() else { return }
         
         currentUser.setValue(imageData, forKey: "photoData")
         
@@ -221,26 +221,12 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             // Atualizar celulas da tableview com a nova foto
             if let image = UIImage(data: imageData) {
                 self.userImage = image
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
         } catch {
             print("Erro ao atualizar a foto \(error)")
         }
         
-    }
-    
-    private func getCurrentUser() -> CoreUser? {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let request: NSFetchRequest<CoreUser> = CoreUser.fetchRequest()
-        
-        do {
-            let users = try context.fetch(request)
-            return users.first ?? nil
-        } catch {
-            print("Erro ao buscar usuario \(error)")
-        }
-        return nil
     }
     
 }

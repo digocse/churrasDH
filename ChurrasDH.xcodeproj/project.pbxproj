@@ -24,6 +24,7 @@
 		AB4124A125C248320058897F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4124A025C248320058897F /* Message.swift */; };
 		AB4124A425C249170058897F /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB4124A325C249160058897F /* MessageCell.xib */; };
 		AB4124A725C249AB0058897F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4124A625C249AB0058897F /* MessageCell.swift */; };
+		AB591EFB25CDC86100EBF49B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB591EFA25CDC86100EBF49B /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		AB4124A025C248320058897F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AB4124A325C249160058897F /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		AB4124A625C249AB0058897F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		AB591EFA25CDC86100EBF49B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ACB998A47569DB91D0538FAA /* Pods_ChurrasDH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChurrasDH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 		AB41248125C2184B0058897F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AB591EFA25CDC86100EBF49B /* User.swift */,
 				AB4124A025C248320058897F /* Message.swift */,
 				AB13B87B25C8CB0D004F7C53 /* DataModel.xcdatamodeld */,
 			);
@@ -277,6 +280,7 @@
 				AB41248825C2186F0058897F /* LoginViewController.swift in Sources */,
 				AB41248B25C218810058897F /* ChatViewController.swift in Sources */,
 				AB4124A125C248320058897F /* Message.swift in Sources */,
+				AB591EFB25CDC86100EBF49B /* User.swift in Sources */,
 				AB41248425C218650058897F /* RegisterViewController.swift in Sources */,
 				AB41248E25C2189E0058897F /* WelcomeViewController.swift in Sources */,
 				AB4124A725C249AB0058897F /* MessageCell.swift in Sources */,
